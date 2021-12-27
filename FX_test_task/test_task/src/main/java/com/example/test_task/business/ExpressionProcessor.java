@@ -184,7 +184,7 @@ public class ExpressionProcessor {
 
         for(int i = sqrtSequence.length() - 1; i >= 0; i--){
 
-            if( sqrtSequence.charAt(i) <= '9' && sqrtSequence.charAt(i) >= '0' ){
+            if( (sqrtSequence.charAt(i) <= '9' && sqrtSequence.charAt(i) >= '0') || sqrtSequence.charAt(i) == '.' ){
 
                 String tmpNumericalString = "";
                 tmpNumericalString += sqrtSequence.charAt(i);
@@ -196,6 +196,7 @@ public class ExpressionProcessor {
             }
             else{
                 resultValue = Double.parseDouble(numericalString);
+                System.out.println("sqrt result value " + resultValue);
                 sqrtAmountOperation = (i+1)/5;
                 break;
             }

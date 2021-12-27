@@ -130,10 +130,13 @@ public class MainGuiController {
                 else
                     return;
             }
+            else
+            {
+                this.isSqrt = false;
+            }
 
 
             this.numericalString += valueString;
-            this.isSqrt = false;
 
 
             this.evaluationTextArea.appendText(valueString);
@@ -147,13 +150,15 @@ public class MainGuiController {
     @FXML
     public void setOperationString(ActionEvent event){
 
-        if( this.isOperation ) {
+        if( this.isOperation && !this.isSqrt ) {
 
             Node node = (Node) event.getSource();
             String operationString = (String) node.getUserData();
 
+            if( this.numericalString.equals(".") )
+                return;
 
-            if (!numericalString.equals(""))
+            if ( !this.numericalString.equals("") )
                 this.expressionList.add(numericalString);
 
             this.expressionList.add(operationString);
@@ -184,15 +189,22 @@ public class MainGuiController {
         String operationSqrtString = (String) node.getUserData();
 
 
-        if( this.isSqrt ){
-            numericalString += operationSqrtString + " ";
-            evaluationTextArea.appendText(operationSqrtString + " ");
+        if( this.isSqrt && !this.numericalString.contains(".") ){
+            this.numericalString += operationSqrtString + " ";
+            this.evaluationTextArea.appendText(operationSqrtString + " ");
         }
 
     }
 
     @FXML
     public void getAssesmentResult(){
+
+        if( this.numericalString.equals("") || this.numericalString.equals(".") )
+            return;
+
+        if( this.numericalString.contains("sqrt") && this.isSqrt )
+            return;
+
 
         this.expressionList.add(numericalString);
 
