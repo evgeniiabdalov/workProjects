@@ -9,7 +9,7 @@
 
 struct DictionaryElement{
    char symbol;
-   int  signalSize;
+   unsigned int  signalSize;
    const bool* codingSignal;
 };
 
@@ -124,7 +124,7 @@ void sendShortSignal(void){
    set_pin_inactive();
 
    printf("%s ", ".");
-      
+
 
 }
 
@@ -146,7 +146,7 @@ void sendLongSeparatorSignal(void){
 
 void playSequence(const bool* sequence, int sequenceSize){
 
-     for(int i = 0; i < sequenceSize; i++){
+     for(unsigned int i = 0; i < sequenceSize; i++){
 
         if( sequence[i] ){
           sendLongSignal();          
@@ -164,11 +164,11 @@ void playSequence(const bool* sequence, int sequenceSize){
 
 void sendSequence(void){
 
-     int messageSize = strlen(memoryString);  
+     unsigned int messageSize = strlen(memoryString);  
 
-     for(int i = 0; i < messageSize; i++){
+     for(unsigned int i = 0; i < messageSize; i++){
       
-         for(int j = 0; j < 7; j++){
+         for(unsigned int j = 0; j < 7; j++){
             
             if( memoryString[i] == elements[j].symbol ){
 
