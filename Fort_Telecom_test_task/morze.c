@@ -109,7 +109,7 @@ void set_pin_inactive(void)
 void sendLongSignal(void){
 
    set_pin_active();
-   delay_ms(2000);
+   delay_ms(1500);
    set_pin_inactive();
 
    printf("%s ", "-");
@@ -128,18 +128,23 @@ void sendShortSignal(void){
 
 }
 
+void sendSeparatorSignal(void){
+
+   delay_ms(500);  
+
+}
+
 void sendShortSeparatorSignal(void){
 
    printf(" ");
-   delay_ms(6000);
-   
+   delay_ms(1500);   
 
 }
 
 void sendLongSeparatorSignal(void){
 
    printf("    ");
-   delay_ms(14000);
+   delay_ms(3500);
    
 
 }
@@ -154,6 +159,8 @@ void playSequence(const bool* sequence, int sequenceSize){
         else{
           sendShortSignal();          
         }
+
+        sendSeparatorSignal();
 
      }
 
